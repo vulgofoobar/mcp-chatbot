@@ -17,6 +17,17 @@ MCP Chat is a command-line interface application that enables interactive chat c
 ANTHROPIC_API_KEY=""  # Enter your Anthropic API secret key
 ```
 
+**Optional: Use external AI models**
+
+To use an external AI model provider, add these variables:
+
+```
+API_ENDPOINT=""       # Base URL of your external AI model endpoint (e.g., http://localhost:8000/v1)
+CLAUDE_MODEL=""       # Model identifier to use (e.g., claude-3-5-sonnet, local-model)
+```
+
+If these are not set, the application will use the Anthropic API with your `ANTHROPIC_API_KEY`.
+
 ### Step 2: Install dependencies
 
 #### Option 1: Setup with uv (Recommended)
@@ -123,3 +134,16 @@ To fully implement the MCP features:
 ### Linting and Typing Check
 
 There are no lint or type checks implemented.
+
+## Tangent discoveries
+
+Explore deeper into MCP concepts:
+
+- see [what's mcp and what it stands for?](./docs/whats-mcp-and-what-it-stands-for.md)
+- see [why does mcp matters?](./docs/why-does-mcp-matters.md)
+- see [what problem mcp solves?](./docs/what-problem-mcp-solves.md)
+- see [what's mcp server?](./docs/whats-mcp-server.md)
+- see [how mcp client and mcp server communicates? what's the most common?](./docs/how-mcp-client-and-mcp-server-communicates.md)
+- see [what's python mcp sdk?](./docs/whats-python-mcp-sdk.md)
+- see [what python mcp sdk does?](./docs/what-python-mcp-sdk-does.md)
+- see [how does python mcp sdk make it easy to expose tools to claude?](./docs/how-does-python-mcp-sdk-make-it-easy.md)

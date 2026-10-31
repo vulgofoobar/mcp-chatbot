@@ -15,7 +15,7 @@ docs = {
 
 # TODO: Write a tool to read a doc
 @mcp.tool(
-  name="read_doc",
+  name="read_doc_contents",
   description="Read the contents of a documente and return it as string."
 )
 def read_doc(
@@ -40,7 +40,7 @@ def edit_doc(
     raise ValueError(f"Doc with id {doc_id} not found")
 
   docs[doc_id] = docs[doc_id].replace(old_str, new_str)
-  
+
 # TODO: Write a resource to return all doc id's
 # TODO: Write a resource to return the contents of a particular doc
 # TODO: Write a prompt to rewrite a doc in markdown format
