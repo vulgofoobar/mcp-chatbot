@@ -137,13 +137,18 @@ There are no lint or type checks implemented.
 
 ## Tangent discoveries
 
-Explore deeper into MCP concepts:
+see [what's mcp and what it stands for?](./docs/whats-mcp-and-what-it-stands-for.md)
 
-- see [what's mcp and what it stands for?](./docs/whats-mcp-and-what-it-stands-for.md)
-- see [why does mcp matters?](./docs/why-does-mcp-matters.md)
-- see [what problem mcp solves?](./docs/what-problem-mcp-solves.md)
-- see [what's mcp server?](./docs/whats-mcp-server.md)
-- see [how mcp client and mcp server communicates? what's the most common?](./docs/how-mcp-client-and-mcp-server-communicates.md)
-- see [what's python mcp sdk?](./docs/whats-python-mcp-sdk.md)
-- see [what python mcp sdk does?](./docs/what-python-mcp-sdk-does.md)
-- see [how does python mcp sdk make it easy to expose tools to claude?](./docs/how-does-python-mcp-sdk-make-it-easy.md)
+see [why does mcp matters?](./docs/why-does-mcp-matters.md)
+
+see [what problem mcp solves?](./docs/what-problem-mcp-solves.md)
+
+see [what's mcp server?](./docs/whats-mcp-server.md)
+
+see [how mcp client and mcp server communicates? what's the most common?](./docs/how-mcp-client-and-mcp-server-communicates.md)
+
+see [what's python mcp sdk?](./docs/whats-python-mcp-sdk.md)
+
+see [what python mcp sdk does?](./docs/what-python-mcp-sdk-does.md)
+
+see [how does python mcp sdk make it easy to expose tools to claude?](./docs/how-does-python-mcp-sdk-make-it-easy.md)
