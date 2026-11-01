@@ -3,7 +3,6 @@ from mcp.server.fastmcp import FastMCP
 
 mcp = FastMCP("DocumentMCP", log_level="ERROR")
 
-
 docs = {
     "deposition.md": "This deposition covers the testimony of Angela Smith, P.E.",
     "report.pdf": "The report details the state of a 20m condenser tower.",
@@ -42,7 +41,24 @@ def edit_doc(
   docs[doc_id] = docs[doc_id].replace(old_str, new_str)
 
 # TODO: Write a resource to return all doc id's
+@mcp.resource(
+  "docs://documents",
+  mime_type="application/json"
+)
+def list_docs() -> list[str]:
+  return list(docs.keys())
+
 # TODO: Write a resource to return the contents of a particular doc
+@mcp.resource(
+  ("docs://documents/{doc_id}"),
+  mime_type="text/plain"
+) # ponytail: could be application/json if server returns structured data, upgrade when content-aware parsing needed
+def fetch_doc(doc_id: str) -> str:
+  if doc_id not in docs:
+    raise ValueError(f"Doc with the {doc_id} not found")
+
+  return docs[doc_id]
+
 # TODO: Write a prompt to rewrite a doc in markdown format
 # TODO: Write a prompt to summarize a doc
 
