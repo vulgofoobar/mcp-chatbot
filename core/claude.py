@@ -1,4 +1,5 @@
 import os
+import json
 from anthropic import Anthropic
 from anthropic.types import Message
 
@@ -32,20 +33,52 @@ class Claude:
         messages.append(assistant_message)
 
     def text_from_message(self, message: Message):
-        # Handle standard Anthropic format
         if message.content:
             texts = []
             for block in message.content:
-                if block.type == "text":
-                    texts.append(block.text)
-            return "\n".join(texts)
+                block_type = block.get('type') if isinstance(block, dict) else getattr(block, 'type', None)
+                if block_type == "text":
+                    text = block.get('text') if isinstance(block, dict) else getattr(block, 'text', None)
+                    if text:
+                        texts.append(text)
+            if texts:
+                return "\n".join(texts)
         
-        # Handle OpenAI format (from proxy)
         if hasattr(message, 'choices') and message.choices:
             content = message.choices[0]['message']['content']
             return content if content else ""
         
         return ""
+
+    def normalize_response(self, message: Message) -> Message:
+        if message.content is not None:
+            return message
+        
+        if hasattr(message, 'choices') and message.choices:
+            choice = message.choices[0]['message']
+            
+            if 'tool_calls' in choice and choice['tool_calls']:
+                content = []
+                for tool_call in choice['tool_calls']:
+                    args = tool_call['function'].get('arguments', '{}')
+                    if isinstance(args, str):
+                        args = json.loads(args)
+                    content.append({
+                        "type": "tool_use",
+                        "id": tool_call['id'],
+                        "name": tool_call['function']['name'],
+                        "input": args,
+                    })
+                message.content = content
+                message.stop_reason = "tool_use"
+            elif choice.get('content'):
+                message.content = [{
+                    "type": "text",
+                    "text": choice['content']
+                }]
+                message.stop_reason = "end_turn"
+        
+        return message
 
     def chat(
         self,
@@ -82,4 +115,4 @@ class Claude:
             params["system"] = system
 
         message = self.client.messages.create(**params)
-        return message
+        return self.normalize_response(message)

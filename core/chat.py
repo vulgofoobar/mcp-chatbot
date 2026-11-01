@@ -21,10 +21,13 @@ class Chat:
 
         await self._process_query(query)
 
+        system_prompt = "You are a helpful assistant with access to tools for reading and editing documents. Use the available tools to answer questions about document contents. When a user asks about a document, use the read_doc_contents tool to fetch its contents."
+
         while True:
             response = self.claude_service.chat(
                 messages=self.messages,
                 tools=await ToolManager.get_all_tools(self.clients),
+                system=system_prompt,
             )
 
             self.claude_service.add_assistant_message(self.messages, response)
@@ -35,9 +38,10 @@ class Chat:
                     self.clients, response
                 )
 
-                self.claude_service.add_user_message(
-                    self.messages, tool_result_parts
-                )
+                self.messages.append({
+                    "role": "user",
+                    "content": tool_result_parts,
+                })
             else:
                 final_text_response = self.claude_service.text_from_message(
                     response
