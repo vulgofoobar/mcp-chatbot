@@ -152,3 +152,29 @@ see [what's python mcp sdk?](./docs/whats-python-mcp-sdk.md)
 see [what python mcp sdk does?](./docs/what-python-mcp-sdk-does.md)
 
 see [how does python mcp sdk make it easy to expose tools to claude?](./docs/how-does-python-mcp-sdk-make-it-easy.md)
+
+see [what's the code to create an mcp server w mcp sdk?](./docs/code-to-create-mcp-server.md)
+
+see [what's the code to define a tool w mcp sdk?](./docs/code-to-define-tool.md)
+
+see [what's the key benefits of the mcp server sdk?](./docs/key-benefits-mcp-server-sdk.md)
+
+see [what's a mcp client session? where it belongs?](./docs/what-is-mcp-client-session.md)
+
+see [what's a mcp client?](./docs/what-is-mcp-client.md)
+
+see [what are resources in mcp?](./docs/what-are-resources-in-mcp.md)
+
+see [what's the purpose of mime_type in mcp responses? give two examples](./docs/mime-type-purpose.md)
+
+see [what's the diff between binary and text files?](./docs/binary-vs-text-files.md)
+
+see [what's the diff between resources and tools?](./docs/resources-vs-tools.md)
+
+see [what's mcp server prompts?](./docs/what-are-mcp-server-prompts.md)
+
+see [why mcp server prompts?](./docs/why-mcp-server-prompts.md)
+
+see [what are mcp server prompt key benefits?](./docs/mcp-server-prompt-benefits.md)
+
+see [what are mcp server primitives?](./docs/mcp-server-primitives.md)
