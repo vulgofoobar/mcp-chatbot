@@ -15,7 +15,7 @@ docs = {
 
 # TODO: Write a tool to read a doc
 @mcp.tool(
-  name="read_doc_contents",
+  name="read_doc",
   description="Read the contents of a documente and return it as string."
 )
 def read_doc(

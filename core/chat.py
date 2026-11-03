@@ -21,7 +21,7 @@ class Chat:
 
         await self._process_query(query)
 
-        system_prompt = "You are a helpful assistant with access to tools for reading and editing documents. Use the available tools to answer questions about document contents. When a user asks about a document, use the read_doc_contents tool to fetch its contents."
+        system_prompt = "You are a helpful assistant with access to tools for reading and editing documents. Use the available tools to answer questions about document contents. When a user asks about a document, use the read_doc tool to fetch its contents."
 
         while True:
             response = self.claude_service.chat(

@@ -100,6 +100,7 @@ Use the / prefix to execute commands defined in the MCP server:
 
 ```
 > /summarize deposition.md
+> /format spec.txt
 ```
 
 Commands will auto-complete when you press Tab.
