@@ -1,5 +1,6 @@
 from pydantic import Field
 from mcp.server.fastmcp import FastMCP
+from mcp.server.fastmcp.prompts import base
 
 mcp = FastMCP("DocumentMCP", log_level="ERROR")
 
@@ -60,8 +61,51 @@ def fetch_doc(doc_id: str) -> str:
   return docs[doc_id]
 
 # TODO: Write a prompt to rewrite a doc in markdown format
-# TODO: Write a prompt to summarize a doc
+@mcp.prompt(
+  name="format",
+  description="Rewrites the contents of the document in Markdonw format."
+)
+def format_doc(
+  doc_id: str = Field(description="Id of the document to format")
+) -> list[base.Message]:
+  prompt = f"""
+    Your goal is to reformat a document to be written with markdown syntax.
 
+    The id of the document you need to reformat is:
+    <document_id>
+    {doc_id}
+    </document_id>
+
+    Add in headers, bullet points, tables, etc as necessary. Feel free to add in structure.
+    Use the 'edit_doc' tool to edit the document. After the document has been reformatted...
+  """
+
+  return [base.UserMessage(prompt)]
+
+# TODO: Write a prompt to summarize a doc
+@mcp.prompt(
+  name="summarize",
+  description="Writes a summary of the contents of the document."
+)
+def summarize_doc(
+  doc_id: str = Field(description="Id of the document to format")
+) -> list[base.Message]:
+  prompt = f"""
+    Your goal is to summarize the contents of a document.
+
+    The id of the document you need to reformat is:
+    <document_id>
+    {doc_id}
+    </document_id>
+
+    Focus on: key points.
+    Format: write a `TLDR` section first then summarize the rest with bullet items.
+    Length: word count max = 500 characters.
+
+    Feel free to use the 'fetch_doc' tool to grab the contents of the given document.
+  """
+
+  return [base.UserMessage(prompt)]
 
 if __name__ == "__main__":
     mcp.run(transport="stdio")

@@ -54,6 +54,10 @@ class CliChat(Chat):
 
         words = query.split()
         command = words[0].replace("/", "")
+        
+        if len(words) < 2:
+            print(f"Error: command '/{command}' requires an argument")
+            return True
 
         messages = await self.doc_client.get_prompt(
             command, {"doc_id": words[1]}
